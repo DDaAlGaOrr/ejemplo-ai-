@@ -5,8 +5,17 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const test = async()=>{
-    const  response =  await openai.listModels();
-    console.log(response.data.data)
+  const response = await openai.createCompletion({
+  model: "text-davinci-002",
+  prompt: "que piensas de facebook?",
+  temperature: 0.9,
+  max_tokens: 150,
+  top_p: 1,
+  frequency_penalty: 0,
+  presence_penalty: 0.6,
+  stop: [" Human:", " AI:"],
+  });
+  console.log(response.data)
 }
 
 test()
